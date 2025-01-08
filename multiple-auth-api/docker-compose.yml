@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  dcs-postgres:
+    image: postgres:15.3-alpine
+    container_name: dcs-postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: K29r8Dhc79n2gPG86CRhoVt9NBxTa0Gk
+      POSTGRES_USER: postgres
+      DATABASE_HOST: 127.0.0.1
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/data/postgres:/var/lib/postgresql/data
+
+networks:
+  default:
+    name: local-network
+
+volumes:
+  postgres_data:    
+    

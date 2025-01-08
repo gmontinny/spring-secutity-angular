@@ -3,11 +3,11 @@ spring:
     name: multiple-auth-api
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/auth}
-    username: ${SPRING_DATASOURCE_USERNAME:keycloak}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
     password: ${SPRING_DATASOURCE_PASSWORD:K29r8Dhc79n2gPG86CRhoVt9NBxTa0Gk}
     driver-class-name: org.postgresql.Driver
     hikari:
-      username: ${SPRING_DATASOURCE_USERNAME:keycloak}
+      username: ${SPRING_DATASOURCE_USERNAME:postgres}
       password: ${SPRING_DATASOURCE_PASSWORD:K29r8Dhc79n2gPG86CRhoVt9NBxTa0Gk}
       connection-timeout: 30000
       leak-detection-threshold: 5000
