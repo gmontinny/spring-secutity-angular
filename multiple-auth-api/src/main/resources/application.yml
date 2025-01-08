@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: multiple-auth-api
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/auth}
+    username: ${SPRING_DATASOURCE_USERNAME:keycloak}
+    password: ${SPRING_DATASOURCE_PASSWORD:K29r8Dhc79n2gPG86CRhoVt9NBxTa0Gk}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      username: ${SPRING_DATASOURCE_USERNAME:keycloak}
+      password: ${SPRING_DATASOURCE_PASSWORD:K29r8Dhc79n2gPG86CRhoVt9NBxTa0Gk}
+      connection-timeout: 30000
+      leak-detection-threshold: 5000
+      idle-timeout: 120000
+      max-lifetime: 1800000
+      connection-test-query: SELECT 1
+      maximum-pool-size: 10
+      minimum-idle: 5
+      initialization-fail-timeout: 2000
+      isolate-internal-queries: true
+      validation-timeout: 5000
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${OAUTH_GOOGLE_CLIENT_ID}
+            clientSecret: ${OAUTH_GOOGLE_CLIENT_SECRET}
+            redirectUri: '{baseUrl}/oauth2/callback/{registrationId}'
+            scope: profile, email
+          github:
+            clientId: ${OAUTH_GITHUB_CLIENT_ID}
+            clientSecret: ${OAUTH_GITHUB_CLIENT_SECRET}
+            redirectUri: '{baseUrl}/oauth2/callback/{registrationId}'
+            scope: user:email
+
+app:
+  auth:
+    token-secret: ${TOKEN_SECRET:64b3d013dbc4d1688f8cc95e1810f345b7cd7db520588f58ddd55990d4b20991}
+    token-expiration-msec: 864000000
+  oauth2:
+    authorized-redirect-uris: http://localhost:4200/oauth2/redirect
